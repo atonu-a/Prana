@@ -84,29 +84,15 @@
     <!-- Main Content Area -->
     {% block main %}
     {% endblock main %}
-    
+
 
     <!-- Footer Space -->
     <footer class="w-full border-t border-white/5 bg-[#050c16]/30 backdrop-blur-sm py-6 mt-12 text-center text-xs text-[#64748b] tracking-wide">
         &copy; 2026 Prana Space. Cultivating clarity, one breath at a time.
     </footer>
 
-    <!-- Basic Vanilla JavaScript for Mobile Menu Interaction -->
-    <script>
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIconPath = document.getElementById('menu-icon-path');
+    <script src="{% static 'js/app.js' %}"></script>
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            
-            // Toggle icon path between Hamburger and Close (X)
-            if (mobileMenu.classList.contains('hidden')) {
-                menuIconPath.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
-            } else {
-                menuIconPath.setAttribute('d', 'M6 18L18 6M6 6l12 12');
-            }
-        });
-    </script>
+
 </body>
 </html>
