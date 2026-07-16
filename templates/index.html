@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block main %}
+<main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 flex flex-col justify-center">
+
+    <!-- Hero Section (Clean Text Matching Starry Night Aesthetic) -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+        <h1 class="text-4xl sm:text-5xl font-light tracking-tight text-[#f8fafc] mb-4 drop-shadow-sm">
+            Pause. Breathe. Connect.
+        </h1>
+        <p class="text-base sm:text-lg text-[#94a3b8] font-light leading-relaxed">
+            Welcome to your silent sanctuary. Select a session below, settle into a comfortable posture, and restore
+            your inner alignment.
+        </p>
+    </div>
+
+    <!-- Category Filters (UI Concept Ready for Future Functionality) -->
+    <div class="flex flex-wrap justify-center gap-3 mb-10">
+        <button
+            class="bg-white/15 text-[#f8fafc] text-xs sm:text-sm font-medium py-1.5 px-4 rounded-full border border-white/10 shadow-sm transition-all duration-300">
+            All Sessions
+        </button>
+        <button
+            class="bg-white/5 hover:bg-white/10 text-[#94a3b8] hover:text-[#f8fafc] text-xs sm:text-sm font-medium py-1.5 px-4 rounded-full border border-white/5 transition-all duration-300">
+            Anxiety Relief
+        </button>
+        <button
+            class="bg-white/5 hover:bg-white/10 text-[#94a3b8] hover:text-[#f8fafc] text-xs sm:text-sm font-medium py-1.5 px-4 rounded-full border border-white/5 transition-all duration-300">
+            Deep Focus
+        </button>
+        <button
+            class="bg-white/5 hover:bg-white/10 text-[#94a3b8] hover:text-[#f8fafc] text-xs sm:text-sm font-medium py-1.5 px-4 rounded-full border border-white/5 transition-all duration-300">
+            Sleep Stories
+        </button>
+    </div>
+
+    <!-- Audio Sessions Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Cards -->
+         {% for sound in music  %}
+        <div
+            class="bg-[#0b1b2d]/40 backdrop-blur-md border border-white/5 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:border-white/15 hover:bg-[#0b1b2d]/60 hover:-translate-y-1 shadow-lg">
+            <div>
+                <div class="flex items-center justify-between mb-4">
+                    <span
+                        class="text-[10px] font-semibold tracking-wider uppercase px-2.5 py-1 bg-white/5 border border-white/10 text-[#94a3b8] rounded-full">{{sound.duration}}
+                        Mins</span>
+                    <span class="text-[#94a3b8] hover:text-[#f8fafc] cursor-pointer transition-colors">
+                        <!-- Favorite/Bookmark Outline Option -->
+                        <i class="fa-regular fa-heart"></i>
+                    </span>
+                </div>
+                <h3 class="text-lg font-medium text-[#f8fafc] mb-1">{{sound.title}}</h3>
+                <p class="text-sm text-[#94a3b8] font-light mb-6 line-clamp-2">{{sound.description}}</p>
+            </div>
+            <!-- Embedded Native Audio Player for Immediate Audio Functionality -->
+            <div class="mt-auto pt-2">
+                <audio controls
+                    class="w-full opacity-75 hover:opacity-100 transition-opacity rounded-lg h-8 bg-transparent">
+                    <source src="{{sound.audio_file.url}}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- Card 2 -->
+
+
+    </div>
+</main>
+{% endblock main %}
