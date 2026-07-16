@@ -7,7 +7,7 @@ body {
   /* Background image setup (User can easily change the path) */
   background-image:
     linear-gradient(to bottom, rgba(8, 18, 30, 0.4), rgba(5, 12, 22, 0.85)),
-    url("../images/Gemini_Generated_Image_g5ug8fg5ug8fg5ug.png");
+    url("../images/image.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
