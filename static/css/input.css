@@ -1,0 +1,62 @@
+/* npx @tailwindcss/cli -i static/css/input.css -o static/css/output.css --watch */
+@import "tailwindcss";
+
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #08121e; /* Deep dark fallback color matching the image */
+  /* Background image setup (User can easily change the path) */
+  background-image:
+    linear-gradient(to bottom, rgba(8, 18, 30, 0.4), rgba(5, 12, 22, 0.85)),
+    url("../images/Gemini_Generated_Image_g5ug8fg5ug8fg5ug.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* Smooth scale animation mimicking deep breathing */
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+  }
+}
+.animate-breathe {
+  animation: breathe 5s infinite ease-in-out;
+}
+
+/* Subtle swaying for the leaf icon */
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(6deg);
+  }
+}
+.animate-sway {
+  display: inline-block;
+  animation: sway 4s infinite ease-in-out;
+}
+
+/* Custom scrollbar for clean UI */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(8, 18, 30, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
