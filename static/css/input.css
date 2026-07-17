@@ -1,10 +1,9 @@
 /* npx @tailwindcss/cli -i static/css/input.css -o static/css/output.css --watch */
 @import "tailwindcss";
 
-body {
+/* body {
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: #08121e; /* Deep dark fallback color matching the image */
-  /* Background image setup (User can easily change the path) */
+  background-color: #08121e; 
   background-image:
     linear-gradient(to bottom, rgba(8, 18, 30, 0.4), rgba(5, 12, 22, 0.85)),
     url("../images/image.jpg");
@@ -13,8 +12,30 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   object-fit: cover;
+} */
+
+
+.heading-text {
+  background: radial-gradient(
+    circle at 100%,
+    #a8fda8,
+    #06b400 50%,
+    #c7fece 75%,
+    #8dfd96 75%
+  );
+  font-weight: 900;
+  background-size: 200% auto;
+  color: #000;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animatedTextGradient 1.5s linear infinite;
 }
 
+@keyframes animatedTextGradient {
+  to {
+    background-position: 200% center;
+  }
+}
 /* Smooth scale animation mimicking deep breathing */
 @keyframes breathe {
   0%,

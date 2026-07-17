@@ -20,7 +20,9 @@
     <!-- Custom CSS for background and smooth loading transitions -->
     
 </head>
-<body class="text-[#e2e8f0] h-screen flex flex-col antialiased">
+<body class="text-[#e2e8f0] bg-[#08121e] h-screen flex flex-col antialiased">
+
+    <img src="{% static 'images/image.jpg' %}" class="w-screen h-screen object-cover fixed z-[-1] right-0 bottom-0 opacity-30" alt="">
 
     <!-- Loading Screen (Stays hidden by default or handled via JS, represented here conceptually) -->
     <div id="loading-screen" class="fixed inset-0 bg-[#060c14] flex flex-col items-center justify-center z-50 transition-opacity duration-700 pointer-events-none opacity-100 hidden ">
@@ -37,12 +39,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Brand Logo & Name -->
-                <div class="flex items-center gap-2.5 group cursor-pointer">
+                <div class="flex items-center gap-1 group cursor-pointer ">
                     <!-- Leaf Icon (SVG) - Styled exactly as requested for Header -->
-                    <span class="animate-sway text-[#94a3b8] group-hover:text-[#f8fafc] transition-colors duration-300">
-                        
+                    <span class="text-2xl text-[#94a3b8] group-hover:text-[#f8fafc] transition-colors duration-300">
+                        <i class="fa-brands fa-pagelines heading-text" style="color: #1ca643;"></i>
                     </span>
-                    <span class="text-xl font-medium tracking-wider text-[#f8fafc] transition-colors duration-300"><i class="fa-brands fa-envira fa-float" style="color: #1ca643;"></i>Prana</span>
+                    <span class="heading-text  font-medium tracking-wider text-[#f8fafc] transition-colors duration-300 text-2xl">Prana</span>
                 </div>
 
                 <!-- Desktop Navigation Links -->
