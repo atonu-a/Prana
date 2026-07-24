@@ -1,117 +1,97 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="{% static 'images/leaf.png' %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="{% static 'images/leaf.png' %}" />
     <title>Prana - Mindfulness & Meditation</title>
-    <link rel="stylesheet" href="{% static 'css/output.css' %}">
-    <link defer="" media="all" onload="this.media='all'" rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.3.1/css/fontawesome.css">
+    <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+    <link defer="" media="all" onload="this.media='all'" rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.3.1/css/fontawesome.css" />
     <script src="https://kit.fontawesome.com/a932a12c35.js"></script>
     <!-- Tailwind CSS CDN -->
-    
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    {% comment %} LottieFiles {% endcomment %}
-    <script
-  src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js"
-  type="module"
-></script>
-    
-    <!-- Custom CSS for background and smooth loading transitions -->
-    
-</head>
-<body class="text-[#e2e8f0] bg-[#08121e] h-screen flex flex-col antialiased">
 
-    <img src="{% static 'images/image.jpg' %}" class="w-screen h-screen object-cover fixed z-[-1] right-0 bottom-0 opacity-30" alt="">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    {% comment %}LottieFiles{% endcomment %}
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js" type="module"></script>
+
+    <!-- Custom CSS for background and smooth loading transitions -->
+  </head>
+  <body class="text-[#e2e8f0] bg-[#08121e] h-screen flex flex-col antialiased">
+    <img src="{% static 'images/image.jpg' %}" class="w-screen h-screen object-cover fixed z-[-1] right-0 bottom-0 opacity-30" alt="" />
 
     <!-- Loading Screen (Stays hidden by default or handled via JS, represented here conceptually) -->
-    <div id="loading-screen" class="fixed inset-0 bg-[#060c14] flex flex-col items-center justify-center z-50 transition-opacity duration-700 pointer-events-none opacity-100 hidden ">
-        <div class="animate-breathe text-center">
-            <!-- SVG Meditate Icon for Loading Screen as planned -->
-            
-            <p class="text-[#cbd5e1] tracking-widest text-sm font-light uppercase">Preparing Your Space...</p>
-        </div>
+    <div id="loading-screen" class="fixed inset-0 bg-[#060c14] flex flex-col items-center justify-center z-50 transition-opacity duration-700 pointer-events-none opacity-100 hidden">
+      <div class="animate-breathe text-center">
+        <!-- SVG Meditate Icon for Loading Screen as planned -->
+
+        <p class="text-[#cbd5e1] tracking-widest text-sm font-light uppercase">Preparing Your Space...</p>
+      </div>
     </div>
 
     <!-- Responsive Navbar -->
 
     {% block header %}
-    <nav class="w-full border-b border-white/5 bg-[#08121e]/40 backdrop-blur-md sticky top-0 z-40 transition-colors duration-300">
+      <nav class="w-full border-b border-white/5 bg-[#08121e]/40 backdrop-blur-md sticky top-0 z-40 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Brand Logo & Name -->
-                <div class="flex items-center gap-1 group cursor-pointer ">
-                    <!-- Leaf Icon (SVG) - Styled exactly as requested for Header -->
-                    <span class="text-2xl text-[#94a3b8] group-hover:text-[#f8fafc] transition-colors duration-300">
-                        <i class="fa-brands fa-pagelines heading-text" style="color: #1ca643;"></i>
-                    </span>
-                    <span class="heading-text  font-medium tracking-wider text-[#f8fafc] transition-colors duration-300 text-2xl">Prana</span>
-                </div>
+          <div class="flex items-center justify-between h-16">
+            <!-- Brand Logo & Name -->
+            <a href="/" class="flex items-center gap-1 group cursor-pointer">
+              <!-- Leaf Icon (SVG) - Styled exactly as requested for Header -->
+              <span class="text-2xl text-[#94a3b8] group-hover:text-[#f8fafc] transition-colors duration-300"><i class="fa-brands fa-pagelines heading-text" style="color: #1ca643;"></i></span>
+              <span class="heading-text font-medium tracking-wider text-[#f8fafc] transition-colors duration-300 text-2xl">Prana</span>
+            </a>
 
-                <!-- Desktop Navigation Links -->
-                <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                    
-                    <a href="#" class="text-[#f8fafc] border-b border-white/40 pb-1 px-1 transition-all duration-300">Home</a>
-                    <a href="#" class="text-[#94a3b8] hover:text-[#f8fafc] transition-colors duration-300 px-1">Meditate</a>
-                    <a href="#" class="text-[#94a3b8] hover:text-[#f8fafc] transition-colors duration-300 px-1">Sleep</a>
-                    <a href="#" class="text-[#94a3b8] hover:text-[#f8fafc] transition-colors duration-300 px-1">Soundscapes</a>
-                </div>
-
-                <!-- Action Button (Placeholder for future Login/Profile) -->
-                {% if request.user.is_authenticated %}
-                <div  class="hidden md:flex items-center">
-                    <button id="profile-btn" class="bg-white/5 hover:bg-white/10 text-[#f8fafc] text-xs font-medium tracking-wide py-2 px-4 rounded-full border border-white/10 transition-all duration-300 hover:scale-105 active:scale-95" data-link="{% url 'profile' %}">
-                       <i class="fa-solid fa-user"></i> {{request.user.username}}
-                    </button>
-                </div>                  
-                {% else %}
-                
-                <div class="hidden md:flex items-center">
-                    <button id="signin-btn" class="bg-white/5 hover:bg-white/10 text-[#f8fafc] text-xs font-medium tracking-wide py-2 px-4 rounded-full border border-white/10 transition-all duration-300 hover:scale-105 active:scale-95" data-link="{% url 'login_view' %}">
-                        Sign In
-                    </button>
-                </div>
-                {% endif %}
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-[#94a3b8] hover:text-[#f8fafc] focus:outline-none transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path id="menu-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+              <a href="#" class="text-[#f8fafc] border-b border-white/40 pb-1 px-1 transition-all duration-300">Home</a>
+              <a href="#" class="text-[#94a3b8] hover:text-[#f8fafc] transition-colors duration-300 px-1">Meditate</a>
+              <a href="#" class="text-[#94a3b8] hover:text-[#f8fafc] transition-colors duration-300 px-1">Sleep</a>
+              <a href="#" class="text-[#94a3b8] hover:text-[#f8fafc] transition-colors duration-300 px-1">Soundscapes</a>
             </div>
+
+            <!-- Action Button (Placeholder for future Login/Profile) -->
+            <div class="flex gap-1">
+              {% if request.user.is_authenticated %}
+                <div class="md:flex items-center">
+                  <button id="profile-btn" class="bg-white/5 hover:bg-white/10 text-[#f8fafc] text-xs font-medium tracking-wide py-2 px-4 rounded-full border border-white/10 transition-all duration-300 hover:scale-105 active:scale-95" data-link="{% url 'profile' %}"><i class="fa-solid fa-user"></i> {{ request.user.username }}</button>
+                </div>
+              {% else %}
+                <div class="md:flex items-center">
+                  <button id="signin-btn" class="bg-white/5 hover:bg-white/10 text-[#f8fafc] text-xs font-medium tracking-wide py-2 px-4 rounded-full border border-white/10 transition-all duration-300 hover:scale-105 active:scale-95" data-link="{% url 'login_view' %}">Sign In</button>
+                </div>
+              {% endif %}
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+              <button id="mobile-menu-btn" class="text-[#94a3b8] hover:text-[#f8fafc] focus:outline-none transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path id="menu-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+              </button>
+            </div>
+            </div>
+          </div>
         </div>
 
         <!-- Mobile Navigation Drawer (Hidden by default) -->
         <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-[#08121e]/90 backdrop-blur-lg px-4 pt-2 pb-4 space-y-2 transition-all duration-300">
-            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-[#f8fafc] bg-white/5">Home</a>
-            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-[#94a3b8] hover:text-[#f8fafc] hover:bg-white/5">Meditate</a>
-            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-[#94a3b8] hover:text-[#f8fafc] hover:bg-white/5">Sleep</a>
-            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-[#94a3b8] hover:text-[#f8fafc] hover:bg-white/5">Soundscapes</a>
-            <div class="pt-4 border-t border-white/5">
-                <button class="w-full bg-white/15 text-[#f8fafc] py-2 px-4 rounded-full text-center text-sm font-medium">
-                    Sign In
-                </button>
-            </div>
+          <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-[#f8fafc] bg-white/5">Home</a>
+          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-[#94a3b8] hover:text-[#f8fafc] hover:bg-white/5">Meditate</a>
+          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-[#94a3b8] hover:text-[#f8fafc] hover:bg-white/5">Sleep</a>
+          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-[#94a3b8] hover:text-[#f8fafc] hover:bg-white/5">Soundscapes</a>
         </div>
-    </nav>
-    {% endblock header %}
+      </nav>
+    {% endblock %}
 
     <!-- Main Content Area -->
     {% block main %}
-    {% endblock main %}
 
+    {% endblock %}
 
     <!-- Footer Space -->
-    <footer class="w-full border-t border-white/5 bg-[#050c16]/30 backdrop-blur-sm py-6 mt-12 text-center text-xs text-[#64748b] tracking-wide">
-        &copy; 2026 Prana Space. Cultivating clarity, one breath at a time.
-    </footer>
+    <footer class="w-full border-t border-white/5 bg-[#050c16]/30 backdrop-blur-sm py-6 mt-12 text-center text-xs text-[#64748b] tracking-wide">&copy; 2026 Prana Space. Cultivating clarity, one breath at a time.</footer>
 
     <script src="{% static 'js/app.js' %}"></script>
-
-
-</body>
+  </body>
 </html>
