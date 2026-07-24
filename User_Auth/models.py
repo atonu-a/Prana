@@ -20,6 +20,9 @@ class Profile(models.Model):
         null=True,
         related_name="users"
     )
+    def __str__(self):
+        return self.user.username
+    
 
 
 # Create your models here.

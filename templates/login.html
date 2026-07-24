@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block header %}
+  <nav class="w-full border-b border-white/5 bg-[#08121e]/40 backdrop-blur-md sticky top-0 z-40 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Brand Logo & Name -->
+        <div class="flex items-center gap-1 group cursor-pointer">
+          <!-- Leaf Icon (SVG) - Styled exactly as requested for Header -->
+          <span class="text-2xl text-[#94a3b8] group-hover:text-[#f8fafc] transition-colors duration-300"><i class="fa-brands fa-pagelines heading-text" style="color: #1ca643;"></i></span>
+          <span class="heading-text font-medium tracking-wider text-[#f8fafc] transition-colors duration-300 text-2xl">Prana</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer (Hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-[#08121e]/90 backdrop-blur-lg px-4 pt-2 pb-4 space-y-2 transition-all duration-300">
+      <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-[#f8fafc] bg-white/5">Home</a>
+      <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-[#94a3b8] hover:text-[#f8fafc] hover:bg-white/5">Meditate</a>
+      <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-[#94a3b8] hover:text-[#f8fafc] hover:bg-white/5">Sleep</a>
+      <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-[#94a3b8] hover:text-[#f8fafc] hover:bg-white/5">Soundscapes</a>
+      <div class="pt-4 border-t border-white/5">
+        <button class="w-full bg-white/15 text-[#f8fafc] py-2 px-4 rounded-full text-center text-sm font-medium">Sign In</button>
+      </div>
+    </div>
+  </nav>
+{% endblock header %}
+
+
+{% block main %}
+<div class="flex items-center justify-center h-screen">
+  <!-- Main Container -->
+  <div class="w-full max-w-md">
+    <!-- Logo & Header -->
+    <div class="text-center mb-8">
+      <a href="/" class="inline-flex items-center gap-2 group mb-3">
+        <!-- Leaf Icon SVG -->
+        <span class="text-4xl text-[#94a3b8] group-hover:text-[#f8fafc] transition-colors duration-300"><i class="fa-brands fa-pagelines heading-text" style="color: #1ca643;"></i></span>
+        <span class="heading-text font-medium tracking-wider text-[#f8fafc] transition-colors duration-300 text-4xl">Prana</span>
+      </a>
+      <h1 class="text-xl font-medium text-slate-100">Welcome back</h1>
+      <p class="text-sm text-slate-400 font-light mt-1">Enter your details to access your sanctuary</p>
+    </div>
+
+    <!-- Glass Card -->
+    <div class="bg-[#0b1b2d]/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl relative">
+      <!-- Django Messages / Alert Show (Optional) -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="mb-5 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-300 text-xs text-center font-light">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+
+      <!-- Form -->
+      <form method="POST" action="{% url "login_view" %}" class="space-y-5">
+        {% csrf_token %}
+
+        <!-- Username / Email Field -->
+        <div>
+          <label for="username" class="block text-xs font-medium text-slate-300 uppercase tracking-wider mb-2">Username</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fa-regular fa-user text-sm"></i></span>
+            <input type="text" id="username" name="username" required placeholder="Enter username" class="w-full pl-10 pr-4 py-3 bg-[#08121e]/60 border border-white/10 rounded-xl text-slate-200 text-sm placeholder-slate-500 focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/60 transition duration-200" />
+          </div>
+        </div>
+
+        <!-- Password Field -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label for="password" class="block text-xs font-medium text-slate-300 uppercase tracking-wider">Password</label>
+            <a href="#" class="text-xs text-emerald-400 hover:text-emerald-300 transition duration-150">Forgot password?</a>
+          </div>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500"><i class="fa-solid fa-lock text-sm"></i></span>
+            <input type="password" id="password" name="password" required placeholder="••••••••" class="w-full pl-10 pr-10 py-3 bg-[#08121e]/60 border border-white/10 rounded-xl text-slate-200 text-sm placeholder-slate-500 focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/60 transition duration-200" />
+
+            <!-- Toggle Password Visibility -->
+            <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-500 hover:text-slate-300"><i id="toggleIcon" class="fa-regular fa-eye text-sm"></i></button>
+          </div>
+        </div>
+
+        <!-- Remember Me Checkbox -->
+        <div class="flex items-center">
+          <input type="checkbox" id="remember" name="remember" class="w-4 h-4 rounded border-white/10 bg-[#08121e]/60 text-emerald-500 focus:ring-emerald-500/50 focus:ring-offset-0" />
+          <label for="remember" class="ml-2 text-xs text-slate-400 font-light cursor-pointer select-none">Remember me for 30 days</label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full py-3 px-4 bg-emerald-500 hover:bg-emerald-600 text-white font-medium text-sm rounded-xl shadow-lg shadow-emerald-500/20 transition duration-200 flex items-center justify-center gap-2 group">
+          <span>Sign In</span>
+          <i class="fa-solid fa-arrow-right text-xs transition-transform duration-200 group-hover:translate-x-1"></i>
+        </button>
+      </form>
+
+      <!-- Bottom Divider & Register Link -->
+      <div class="mt-6 pt-5 border-t border-white/5 text-center">
+        <p class="text-xs text-slate-400 font-light">
+          Don't have an account?
+          <a href="#" class="text-emerald-400 hover:text-emerald-300 font-medium ml-1 transition">Create one</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

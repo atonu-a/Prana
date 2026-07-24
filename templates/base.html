@@ -36,6 +36,7 @@
 
     <!-- Responsive Navbar -->
 
+    {% block header %}
     <nav class="w-full border-b border-white/5 bg-[#08121e]/40 backdrop-blur-md sticky top-0 z-40 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -88,6 +89,7 @@
             </div>
         </div>
     </nav>
+    {% endblock header %}
 
     <!-- Main Content Area -->
     {% block main %}
