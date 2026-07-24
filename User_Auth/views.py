@@ -1,6 +1,7 @@
 from .models import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 
@@ -27,7 +28,7 @@ def login_view(request):
     return render(request, "login.html")
 
 #profile page
-
+@login_required(login_url="login_view")
 def profile(request):
     profile = request.user.profile
     languages = Language.objects.all()

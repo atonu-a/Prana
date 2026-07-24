@@ -8,11 +8,11 @@
       <p class="text-base sm:text-lg text-[#94a3b8] font-light leading-relaxed">Welcome to your silent sanctuary. Select a session below, settle into a comfortable posture, and restore your inner alignment.</p>
 
 
-      {% comment %} {% if request.user.is_authenticated %}
+      {% if request.user.is_authenticated %}
       
-      {% else %} {% endcomment %}
+      {% else %}
       <button class="mt-5 bg-white/15 text-[#f8fafc] text-xs sm:text-[18px] font-medium py-2.5 px-4 rounded-full border border-white/15 shadow-sm duration-300 cursor-pointer hover:scale-105 hover:border-white active:scale-95">Get Started For Free <i class="fa-solid fa-arrow-right"></i></button>
-      {% comment %} {% endif %} {% endcomment %}
+      {% endif %}
     </div>
 
     <!-- Category Filters (UI Concept Ready for Future Functionality) -->
